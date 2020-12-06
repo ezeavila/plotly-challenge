@@ -35,17 +35,17 @@ function plotFunctions() {
 }
 
 function demographicFunc(valSelect) {
-  var filterValue2 = data.samples.filter(value => value.id == valSelect);
-  var ouid = filterValue2.map(v => v.otu_ids);
+  var filterVal2 = data.samples.filter(value => value.id == valSelect);
+  var od = filterVal2.map(v => v.otu_ids);
   ouid = treatOuid(ouid[0].slice(0, 10));
-  var valueX = filterValue2.map(v => v.sample_values);
-  valueX = valueX[0].slice(0, 10);
+  var valX = filterVal2.map(v => v.sample_values);
+  valX = valX[0].slice(0, 10);
 
-  var out_label = filterValue2.map(v => v.otu_labels);
+  var out_label = filterVal2.map(v => v.otu_labels);
   var names = treatBacName(out_label[0]).slice(0, 10);
 
   var trace = {
-    x: valueX,
+    x: valX,
     y: ouid,
     text: names,
     type: "bar",
@@ -67,27 +67,27 @@ function demographicFunc(valSelect) {
 
 function panelPlot(valSelect) {
 
-  var filterValue = data.metadata.filter(value => value.id == valSelect);
+  var filterVal = data.metadata.filter(value => value.id == valSelect);
 
   var divValue = d3.select(".panel-body");
   divValue.html("");
-  divValue.append("p").text(`id: ${filterValue[0].id}`);
-  divValue.append("p").text(`ethnicity: ${filterValue[0].ethnicity}`);
-  divValue.append("p").text(`gender: ${filterValue[0].gender}`);
-  divValue.append("p").text(`age: ${filterValue[0].age}`);
-  divValue.append("p").text(`location: ${filterValue[0].location}`);
-  divValue.append("p").text(`bbtype: ${filterValue[0].bbtype}`);
-  divValue.append("p").text(`wfreq: ${filterValue[0].wfreq}`);
+  divValue.append("p").text(`id: ${filterVal[0].id}`);
+  divValue.append("p").text(`ethnicity: ${filterVal[0].ethnicity}`);
+  divValue.append("p").text(`gender: ${filterVal[0].gender}`);
+  divValue.append("p").text(`age: ${filterVal[0].age}`);
+  divValue.append("p").text(`location: ${filterVal[0].location}`);
+  divValue.append("p").text(`bbtype: ${filterVal[0].bbtype}`);
+  divValue.append("p").text(`wfreq: ${filterVal[0].wfreq}`);
 }
 
 function bubbleChart(valSelect) {
-  var filterValue3 = data.samples.filter(value => value.id == valSelect);
-  var ouid = filterValue3.map(v => v.otu_ids);
+  var filterVal3 = data.samples.filter(value => value.id == valSelect);
+  var ouid = filterVal3.map(v => v.otu_ids);
   ouid = ouid[0];
-  var valueY = filterValue3.map(v => v.sample_values);
+  var valueY = filterVal3.map(v => v.sample_values);
   valueY = valueY[0];
 
-  var out_label = filterValue3.map(v => v.otu_labels);
+  var out_label = filterVal3.map(v => v.otu_labels);
   out_label = treatBacName(out_label[0]);
 
   var trace1 = {
@@ -113,8 +113,8 @@ function bubbleChart(valSelect) {
 
 
 function gaugeChart(valSelect) {
-  var filterValue = data.metadata.filter(value => value.id == valSelect);
-  var weeklyFreq = filterValue[0].wfreq;
+  var filterVal = data.metadata.filter(value => value.id == valSelect);
+  var weeklyFreq = filterVal[0].wfreq;
 
   var data2 = [
     {
